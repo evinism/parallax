@@ -1,11 +1,9 @@
 console.log("Initializing server");
+
 const Koa = require('koa');
 const Logger = require('koa-logger');
 const session = require('koa-generic-session');
 const Static = require('koa-static');
-
-//const redisStore = require('koa-redis');
-//const Passport = require('koa-passport');
 
 const router = require('./router');
 

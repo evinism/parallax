@@ -22,9 +22,12 @@
     "webpack": "^1.12.13"
   },
   "scripts": {
+    "dev": "scripts/start_dev.sh",
+    "prod": "scripts/start_prod.sh",
     "build": "webpack",
     "watch": "webpack --watch",
-    "dev": "node scripts/server.js --harmony"
+    "server:development": "node --harmony scripts/server.js",
+    "server:production": "node --harmony scripts/server.js"
   },
   "repository": {
     "type": "git",
