@@ -26,3 +26,6 @@ jspm_packages
 
 # Compiled Bundles
 public/assets/bundle.js
+
+# Redis dumps
+dump.rdb
