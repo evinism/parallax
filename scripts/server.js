@@ -1,15 +1,25 @@
 console.log("Initializing server");
 
-const Koa = require('koa');
-const Logger = require('koa-logger');
+const koa = require('koa');
+const logger = require('koa-logger');
+const redisStore = require('koa-redis');
 const session = require('koa-generic-session');
-const Static = require('koa-static');
+const staticServer = require('koa-static');
+const passport = require('koa-passport')
 
-const router = require('./router');
+const configure = require('../config/routes');
+const router = require('koa-router')();
+configure(router, passport);
 
-var app = Koa();
-app.use(Logger())
-   .use(Static('public'))
+var app = koa();
+
+app.keys = ['development_secret_key_lol'];
+
+app.use(logger())
+   .use(session({ store: redisStore() }))
+   .use(staticServer('public'))
+   .use(passport.initialize())
+   .use(passport.session())
    .use(router.routes());
 
 app.listen(3000);
