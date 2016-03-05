@@ -10,13 +10,15 @@
     "koa-passport": "^1.2.0",
     "koa-redis": "^2.0.1",
     "koa-router": "^5.4.0",
-    "koa-static": "^2.0.0"
+    "koa-static": "^2.0.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
     "babel-loader": "^6.2.2",
-    "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "webpack": "^1.12.13"
@@ -25,9 +27,7 @@
     "dev": "scripts/start_dev.sh",
     "prod": "scripts/start_prod.sh",
     "build": "webpack",
-    "watch": "webpack --watch",
-    "redis-dev": "redis-server --port 6379 --maxclients 1000",
-    "server:development": "node --harmony scripts/server.js",
+    "server:development": "babel-node -- scripts/server.js",
     "server:production": "node --harmony scripts/server.js"
   },
   "repository": {

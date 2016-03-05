@@ -1,6 +1,6 @@
 // webpack.config.js
 module.exports = {
-  entry: './assets/js/main.js',
+  entry: './app/assets/js/main.js',
   output: {
     path: 'public/assets',
     filename: 'bundle.js'
