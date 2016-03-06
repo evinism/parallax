@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # you can just... add things!
+echo "Initializing MongoDB"
+service mongod start --config config/mongo-local.conf
+
 echo "Starting Redis Server"
 redis-server --port 6379 --maxclients 1000 &
 
@@ -11,8 +14,8 @@ echo "Starting Server"
 npm run server:development
 
 echo "Cleaning up..."
-kill %1 # $WEBPACK #Clean up on server die
-kill %2 # $REDIS_SERVER
+service mongod stop
+jobs -x kill
 wait
 echo "Processes killed"
 sleep 1

@@ -11,6 +11,7 @@
     "koa-redis": "^2.0.1",
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
+    "mongoose": "^4.4.6",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   },
@@ -27,6 +28,7 @@
     "dev": "scripts/start_dev.sh",
     "prod": "scripts/start_prod.sh",
     "build": "webpack",
+    "mongo:initdev": "mongo scripts/mongo_dev_init.js",
     "server:development": "babel-node -- scripts/server.js",
     "server:production": "node --harmony scripts/server.js"
   },
