@@ -1,5 +1,5 @@
-function* handleRequest(next){
+function* handleGet(next){
   this.body = "API!";
 };
 
-module.exports = handleRequest;
+module.exports = {get: handleGet};

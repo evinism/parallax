@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const db_configure = require('../config/dbconfig.json');
 const secrets = require('../config/secrets.json');
 const configure_routes = require('../config/routes');
+const configure_passport = require('../config/passport');
 
 // TODO: make this all promise-y
 
@@ -26,10 +27,19 @@ db.once('open', function() {
   console.log("Parallax: Successfully connected to Mongo instance");
 });
 
-console.log("Parallax: Configuring routes")
-
+console.log("Parallax: Configuring routes and passport")
+configure_passport(passport);
 configure_routes(router, passport);
+
 var app = koa();
+
+var authenticater = function* (ctx) {
+  if (ctx.isAuthenticated()) {
+    yield;
+  } else {
+    ctx.redirect('/login');
+  }
+}
 
 app.keys = [secrets.redis_key];
 app.use(logger())
@@ -37,6 +47,7 @@ app.use(logger())
    .use(staticServer('public'))
    .use(passport.initialize())
    .use(passport.session())
+//   .use(authenticater)
    .use(router.routes());
 
 function run(){

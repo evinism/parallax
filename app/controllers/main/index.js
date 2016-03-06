@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Main = require('../../views/main');
 
-function* handleRequest(next){
+function* handleGet(next){
   var session = this.session;
   session.count = session.count || 0;
   session.count++;
@@ -10,4 +10,4 @@ function* handleRequest(next){
   this.body = '<!doctype html>' + ReactDOMServer.renderToStaticMarkup(main);
 };
 
-module.exports = handleRequest;
+module.exports = {get: handleGet};

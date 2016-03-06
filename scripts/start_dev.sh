@@ -15,7 +15,7 @@ npm run server:development
 
 echo "Cleaning up..."
 service mongod stop
-jobs -x kill
+kill `jobs -p`
 wait
 echo "Processes killed"
 sleep 1

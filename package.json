@@ -12,6 +12,8 @@
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
     "mongoose": "^4.4.6",
+    "passport-google-auth": "^1.0.1",
+    "passport-local": "^1.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   },
