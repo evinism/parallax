@@ -1,6 +1,7 @@
 console.log("Parallax: Initializing server");
 
 const koa = require('koa');
+const bodyParser = require('koa-bodyparser');
 const router = require('koa-router')();
 const logger = require('koa-logger');
 const redisStore = require('koa-redis');
@@ -27,27 +28,21 @@ db.once('open', function() {
   console.log("Parallax: Successfully connected to Mongo instance");
 });
 
-console.log("Parallax: Configuring routes and passport")
-configure_passport(passport);
+console.log("Parallax: Configuring passport");
+configure_passport(passport, db);
+
+console.log("Parallax: Configuring routes");
 configure_routes(router, passport);
 
 var app = koa();
 
-var authenticater = function* (ctx) {
-  if (ctx.isAuthenticated()) {
-    yield;
-  } else {
-    ctx.redirect('/login');
-  }
-}
-
 app.keys = [secrets.redis_key];
 app.use(logger())
+   .use(bodyParser())
    .use(session({ store: redisStore() }))
    .use(staticServer('public'))
    .use(passport.initialize())
    .use(passport.session())
-//   .use(authenticater)
    .use(router.routes());
 
 function run(){
